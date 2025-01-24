@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dublin Airport Remote Control</title>
+  <style>
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #007a78; /* Dublin Airport Teal */
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .remote-container {
+      display: grid;
+      grid-template-rows: auto 1fr auto; /* Logo | Main Sections | Channels */
+      grid-template-columns: 1fr 50px 1fr; /* Left controls, horizontal space, right number pad */
+      gap: 20px; /* Standard gap between rows */
+      background-color: #00444c; /* Dark Teal Background */
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+      width: 95%;
+      max-width: 1200px; /* Wider layout */
+    }
+
+    .logo {
+      grid-column: span 3; /* Full width of the container */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      background-color: white; /* Background for the logo area */
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    }
+
+    .logo img {
+      max-width: 150px;
+      height: auto;
+    }
+
+    /* Controls Section: Aligned in Height with Number Pad */
+    .controls {
+      grid-column: 1 / 2; /* Align on the left */
+      display: grid;
+      grid-template-rows: repeat(4, 1fr); /* 4 rows to match number pad */
+      grid-template-columns: repeat(3, 1fr); /* 3 columns */
+      gap: 10px; /* Tight spacing */
+      justify-items: center;
+      align-items: center;
+    }
+
+    /* Number Pad Section: Perfectly Aligned with Controls */
+    .number-pad {
+      grid-column: 3 / 4; /* Align on the right */
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 columns */
+      grid-template-rows: repeat(4, 1fr); /* 4 rows */
+      column-gap: 5px; /* Smaller horizontal gap */
+      row-gap: 10px; /* Match row gap with controls */
+      justify-items: center;
+      align-items: center;
+    }
+
+    .number-pad button {
+      width: 80px; /* Same size buttons */
+      height: 80px; /* Same size buttons */
+    }
+
+    .number-pad button:nth-child(10) {
+      grid-column: 2 / 3; /* Place `0` directly under `8` */
+    }
+
+    /* Channel Icons Section */
+    .channel-icons {
+      grid-column: span 3; /* Full width */
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .channel img {
+      width: 80px;
+      height: auto;
+      filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .channel img:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    }
+
+    /* Button Styles */
+    button {
+      background-color: white;
+      color: #007a78;
+      border: none;
+      border-radius: 15px;
+      width: 85px;
+      height: 85px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    /* Larger round background for symbols */
+    button span {
+      background-color: #007a78; /* Symbol background */
+      color: white;
+      border-radius: 50%;
+      display: inline-block;
+      width: 65px; /* Larger round background */
+      height: 65px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+
+    button:hover {
+      background-color: #cccccc;
+    }
+
+    button:active {
+      transform: scale(0.95); /* Shrinks button slightly */
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="remote-container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="img/logo.png" alt="Dublin Airport Logo">
+    </div>
+
+    <!-- Controls Section -->
+    <div class="controls">
+      <button><span>Sky</span></button>
+      <button><span>Guide</span></button>
+      <button><span>Box</span></button>
+      <button><span>CH▲</span></button>
+      <button><span>CH▼</span></button>
+      <button><span>Back</span></button>
+      <button><span>Vol▲</span></button>
+      <button><span>Vol▼</span></button>
+      <button><span>Mute</span></button>
+    </div>
+
+    <!-- Number Pad -->
+    <div class="number-pad">
+      <button><span>1</span></button>
+      <button><span>2</span></button>
+      <button><span>3</span></button>
+      <button><span>4</span></button>
+      <button><span>5</span></button>
+      <button><span>6</span></button>
+      <button><span>7</span></button>
+      <button><span>8</span></button>
+      <button><span>9</span></button>
+      <button><span>0</span></button>
+    </div>
+
+    <!-- Channel Icons -->
+    <div class="channel-icons">
+      <div class="channel"><img src="icons/Sky Sports News.png" alt="Sky Sports"></div>
+      <div class="channel"><img src="icons/BBC News.png" alt="BBC"></div>
+      <div class="channel"><img src="icons/ITV HD.png" alt="ITV"></div>
+      <div class="channel"><img src="icons/Sky One HD.png" alt="Sky One"></div>
+    </div>
+  </div>
+
+  <script>
+    // Button click effect
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        button.style.transform = 'scale(0.95)';
+        button.style.boxShadow = '0 0 20px rgba(0, 255, 255, 0.8)';
+        setTimeout(() => {
+          button.style.transform = '';
+          button.style.boxShadow = '';
+        }, 200);
+      });
+    });
+  </script>
+</body>
+</html>
